@@ -4,6 +4,15 @@ public class Pytanie {
     private boolean odpowiedz;
     private int idZdejcia;
     private boolean czyUdzielonoPoprawnejOdpowiedzi;
+    private String podpowiedz;
+
+    public Pytanie(String trescPytanie, boolean odpowiedz, int idZdejcia, String podpowiedz) {
+        this.trescPytanie = trescPytanie;
+        this.odpowiedz = odpowiedz;
+        this.idZdejcia = idZdejcia;
+        this.podpowiedz = podpowiedz;
+        czyUdzielonoPoprawnejOdpowiedzi =false;
+    }
 
     public Pytanie(String trescPytanie, boolean odpowiedz, int idZdejcia) {
         this.trescPytanie = trescPytanie;

@@ -7,13 +7,19 @@ public class RepozytoriumPytan {
         ArrayList<Pytanie> pytania = new ArrayList<>();
         pytania.add(new Pytanie("Czy na Kasprowy Wierch można wjechać kolejką linową",
                 true,
-                R.drawable.kasprowy));
+                R.drawable.kasprowy,
+                "Na zdjęciu przedstawiono Kasprowy Wierch, widzisz tam kolejkę?"));
         pytania.add(new Pytanie("Czy w Bieszczadach jest szczyt o nazwie Świnica",
                 false,
                 R.drawable.swinica));
         pytania.add(new Pytanie("Czy w paśmie Orlej Perci jest Kozi Wierch",
                 true,
                 R.drawable.koziwierch));
+
+        pytania.add(new Pytanie("Najwyższym szczytem Polski jest Giewont",
+                false,
+                R.drawable.rysy));
+
         return pytania;
     }
 }

@@ -2,6 +2,7 @@ package pl.zabrze.zs10.testtakniesroda3p;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -34,11 +35,7 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        boolean czyDobra = pytanies.get(aktualnyNumer).isOdpowiedz();
-                        if(czyDobra == true){
-                            Toast.makeText(MainActivity.this, "Dobra odpowiedź",
-                                    Toast.LENGTH_SHORT).show();
-                        }
+                        sprawdzOdpowiedz(true);
                     }
                 }
         );
@@ -47,10 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(pytanies.get(aktualnyNumer).isOdpowiedz() == false){
-                            Toast.makeText(MainActivity.this, "Dobra odpowiedź",
-                                    Toast.LENGTH_SHORT).show();
-                        }
+                       sprawdzOdpowiedz(false);
                     }
                 }
         );
@@ -61,12 +55,24 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         aktualnyNumer++;
                         if(aktualnyNumer == pytanies.size()){
-                            textView.setText("Koniec testu");
-
+                            int pkt = podliczPunkty();
+                            textView.setText("Koniec testu zdobyto "+pkt+" punktów");
+                            --aktualnyNumer;
                             buttondalej.setVisibility(View.INVISIBLE);
                             return;
                         }
                         wyswietlPytanie(aktualnyNumer);
+                    }
+                }
+        );
+        buttonczit = findViewById(R.id.button3);
+        buttonczit.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent =new Intent(MainActivity.this,PodpowiedzActivity.class);
+                        intent.putExtra("NRPYTANIE",aktualnyNumer);
+                        MainActivity.this.startActivity(intent);
                     }
                 }
         );
@@ -75,5 +81,20 @@ public class MainActivity extends AppCompatActivity {
     private void wyswietlPytanie(int i){
         textView.setText(pytanies.get(i).getTrescPytanie());
         imageView.setImageResource(pytanies.get(i).getIdZdejcia());
+    }
+    private void sprawdzOdpowiedz(boolean odp){
+        if(pytanies.get(aktualnyNumer).isOdpowiedz() == odp){
+            pytanies.get(aktualnyNumer).setCzyUdzielonoPoprawnejOdpowiedzi(true);
+            Toast.makeText(MainActivity.this, "Dobra odpowiedź",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+    private int podliczPunkty(){
+        int punkty =0;
+        for(Pytanie p:pytanies){
+            if(p.isCzyUdzielonoPoprawnejOdpowiedzi())
+                punkty++;
+        }
+        return punkty;
     }
 }
