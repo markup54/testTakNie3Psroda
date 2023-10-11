@@ -5,10 +5,10 @@ import java.util.ArrayList;
 public class RepozytoriumPytan {
     public static ArrayList<Pytanie> zwrocPytania(){
         ArrayList<Pytanie> pytania = new ArrayList<>();
-        pytania.add(new Pytanie("Czy na Kasprowy Wirch można wjechać kolejka linową",
+        pytania.add(new Pytanie("Czy na Kasprowy Wierch można wjechać kolejką linową",
     true,
         R.drawable.kasprowy
-        );
+        ));
 
         pytania.add(new Pytanie("Czy w Bieszczadach jest szczyt o nazwie Świnica",
                 false,
