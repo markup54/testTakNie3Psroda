@@ -1,5 +1,6 @@
 package pl.zabrze.zs10.testtakniesroda3p;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -23,13 +24,23 @@ public class MainActivity extends AppCompatActivity {
     private int aktualnyNumer;
 
     @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("NR",aktualnyNumer);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         imageView = findViewById(R.id.imageView);
         textView = findViewById(R.id.textView);
-
-        wyswietlPytanie(0);
+        if(savedInstanceState == null){
+        wyswietlPytanie(0);}
+        else{
+            aktualnyNumer = savedInstanceState.getInt("NR");
+            wyswietlPytanie(aktualnyNumer);
+        }
         buttontak = findViewById(R.id.button);
         buttontak.setOnClickListener(
                 new View.OnClickListener() {
