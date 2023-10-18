@@ -21,6 +21,10 @@ public class Pytanie {
         czyUdzielonoPoprawnejOdpowiedzi = false;
     }
 
+    public String getPodpowiedz() {
+        return podpowiedz;
+    }
+
     public String getTrescPytanie() {
         return trescPytanie;
     }
