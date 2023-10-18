@@ -12,6 +12,6 @@ public class PodpowiedzActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_podpowiedz);
         Intent intent = getIntent();
-        //int nrPytania = intent.getIntExtra("NRPYTANIE");
+        int nrPytania = intent.getIntExtra("NRPYTANIE",0);
     }
 }
